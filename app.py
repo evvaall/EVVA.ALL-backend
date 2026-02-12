@@ -2,6 +2,9 @@ from flask import Flask, jsonify, request
 from groq import Groq
 from dotenv import load_dotenv
 import os
+from flask_cors import CORS
+
+
 
 load_dotenv()
 Dados = {
@@ -113,6 +116,7 @@ def enviar_mensagem(mensagem, historico):
 
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/ask", methods=["POST"])
 def home():

@@ -137,4 +137,4 @@ def home():
     return jsonify({"resposta":resposta})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

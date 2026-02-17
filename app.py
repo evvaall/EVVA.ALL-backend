@@ -94,7 +94,7 @@ def orientacao(diconario:dict) -> str:
     ORDEM DE CONVERSA:
     1. Se o cliente disser 'Oi' ou 'Olá', execute o PASSO 1: Pergunte o nome dele.
     2. Assim que ele disser o nome, execute o PASSO 2: Pergunte o que ele procura (Custo dos seviços, Suporte técnico, Fazer perguntas ou Falar com consultor).
-    3. Se ele escolher 'Custo dos serviços', execute o PASSO 3(orçamento): Pergunte o tamanho/tipo do projeto.
+    3. Se ele escolher 'Custo dos serviços', execute o PASSO 3(orçamento): chatbot, automação ou consultoria.
     3.1 Após a resposta dele, execute o PASSO 4(orçamento): Peça o contacto (WhatsApp ou E-mail).
     4. Se ele escolher 'Suporte técnico', execute  o PASSO 3(suporte).
     4.1 Após a resposta dele, execute o PASSO 4(suporte): Peça o contacto (WhatsApp ou E-mail).

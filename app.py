@@ -3,18 +3,52 @@ from groq import Groq
 from dotenv import load_dotenv
 import os
 from flask_cors import CORS
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import re
 
+def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
+    meu_email = os.getenv("EMAIL")
+    minha_senha =os.getenv("SENHA_APP")
+    email_destino =os.getenv("EMAIL") # Onde queres receber o aviso
 
+    # Criar a estrutura do e-mail
+    msg = MIMEMultipart()
+    msg['From'] = meu_email
+    msg['To'] = email_destino
+    msg['Subject'] = f"🔥 NOVO LEAD: {nome_cliente} está interessado!"
+
+    corpo = f"""
+    Temos um novo potencial cliente interessado!
+    
+    Nome: {nome_cliente}
+    Contacto: {contacto_cliente}
+    Interesse: {interesse_cliente}
+    
+    Responde rápido para não perderes a venda!
+    """
+    msg.attach(MIMEText(corpo, 'plain'))
+
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(meu_email, minha_senha)
+        server.send_message(msg)
+        server.quit()
+        print("Notificação enviada com sucesso!")
+    except Exception as e:
+        print(f"Erro ao enviar e-mail: {e}")
 
 load_dotenv()
 Dados = {
-    "Empresa":"Evaall",
+    "Empresa":"evvaall",
     "Contacto":[
         "+244957847477",
         "ev283@gmail.com"
     ],
     "faq":{
-        "O Que é a evaall?": "A evva.all é uma empresa especializada em automação de processos, análise de dados e desenvolvimento de soluções com inteligência artificial para empresas e profissionais.",
+        "O Que é a evvaall?": "A evvaall é uma empresa especializada em automação de processos, análise de dados e desenvolvimento de soluções com inteligência artificial para empresas e profissionais.",
         "Qual é o vosso objectivo?":"Nosso Objectivo é simplifiar tarefas que levariam muito tempo, aumentar a produtividade e entregar resultados mensuráveis e tecnológicos de ponta.",
         "Quais são os serviços que vocês prestram?":"Os nossos serviços são: Análise de dados, Criação de chatboots, Consultoria digital e Automatizamos tarefas repetitivas.",
         "Que tipo de Automações?":"Praticamente, qualquer tarefa repetitiva baseada em regras ou que envolva processamento de dados pode ser automatizada. Por exemplo: Envio automático de lembretes de pagamento por WhatsApp, Agendamento de reuniões, Geração e invio automáticos de relatórios.",
@@ -153,7 +187,19 @@ def home():
             }, 400
         )
     mensagem = data["mensagem"].strip()
+    # detetar número de telefone (Angola)
+    padrao_tel = r"9\d{8}"
+    tell = re.search(padrao_tel, mensagem)
+    padrao_email = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+    email = re.search(padrao_email, mensagem)
     
+    if tell:
+        contacto = resultado.group()
+        # Aqui chamas a função de e-mail
+        enviar_notificacao_lead("Cliente do Site evvaall", contacto, "Interesse detetado via Chat")
+    if email:
+        contacto = email.group()
+        enviar_notificacao_lead("Cliente do Site evvaall", contacto, "Interesse detetado via Chat")
     if mensagem in Dados["faq"]:
         return jsonify({"resposta": Dados["faq"][mensagem]})
 

@@ -17,17 +17,17 @@ Dados = {
         "O Que é a evaall?": "A evva.all é uma empresa especializada em automação de processos, análise de dados e desenvolvimento de soluções com inteligência artificial para empresas e profissionais.",
         "Qual é o vosso objectivo?":"Nosso Objectivo é simplifiar tarefas que levariam muito tempo, aumentar a produtividade e entregar resultados mensuráveis e tecnológicos de ponta.",
         "Quais são os serviços que vocês prestram?":"Os nossos serviços são: Análise de dados, Criação de chatboots, Consultoria digital e Automatizamos tarefas repetitivas.",
-        "Que tipo de Automações?":"Praticamente qualquer tarefa repetitiva, baseada em regras ou que envolva processamento de dados pode ser automatizada. por exemplo: nas árias de marketing  vendas, análise e dados, atendimento ao cliente e no  sector administrativo.",
-        "Que tipo de Chatboots?":"Desenvolvemos chatbots inteligentes para atendimento 24/7, integrando WhatsApp, Telegram, sites e apps.",
+        "Que tipo de Automações?":"Praticamente, qualquer tarefa repetitiva baseada em regras ou que envolva processamento de dados pode ser automatizada. Por exemplo: Envio automático de lembretes de pagamento por WhatsApp, Agendamento de reuniões, Geração e invio automáticos de relatórios.",
+        "Que tipo de Chatbots?":"Desenvolvemos chatbots inteligentes para atendimento 24/7, integrando com WhatsApp, Telegram, sites e apps.",
         "Que tipo de Consultoria?":"Avaliamos seus processos e sugerimos soluções digitais sob medida, identificando o problema e ajudamos na tomada de desisão",
-        "Que tipo de Análise de dados?":"por exemplo, uma empresa pode analisar dados históricos para prever vendas, demanda, comportamento do cliente ou até riscos; uma loja pode analisar quais produtos vendem mais e ajustar o estoque ou promoções.",
+        "Que tipo de Análise de dados?":"Por exemplo, Hoje, como é que tu sabes qual é o teu produto mais lucrativo ou qual cliente está prestes a abandonar a tua empresa? Tu usas dados reais ou apenas intuição?",
         "Em que árias vocês atuam?":"sector Administrativo, Marketing e vendas, atendimento ao cliente e nas áreas de TI",
-        "Como faço para se eu quiser os vossos Serviços?":"Para mais informação ligue para: 957 847 477, ou deixe 1 mensagem com o serviço entre ' ' e nós entraremos em contacto.",
-        "Me fale mais sobre vocês":"A evva.all é uma empresa de soluções digitais que ajuda empresas e profissionais a automatizar tarefas repetitivas, transformar dados em decisões estratégicas e criar chatboots inteligentes para a comunicação eficiente.",
+        "Como faço se eu quiser os vossos Serviços?":"Para mais informação ligue para: 957 847 477, ou deixe 1 mensagem com o serviço entre ' ' e nós entraremos em contacto.",
+        "Me fale mais sobre vocês":"A evvaall é uma empresa de soluções digitais que ajuda empresas e profissionais a automatizar tarefas repetitivas, transformar dados em decisões estratégicas e criar chatboots inteligentes para a comunicação eficiente.",
         "Como é que vocês garantem segurança de informação":"Seguimos boas práticas de: 1-Controle de acesso baseado em permissões, 2-Armazenamento seguro em cloud, 3-Logs auditáveis, 4-Separação de ambiente (produção/teste), Em projetos sensíveis, a arquitetura pode ser ajustada para cumprir exigências específicas do cliente.",
         "Que tecnologias utilizam?":"A evvaall adota uma abordagem tecnológica orientada a arquitetura, não a ferramentas isoladas. A escolha das tecnologias depende do contexto operacional do cliente, requisitos de segurança, escalabilidade e integração",
         "Como escolhem a tecnologia certa?":"Não utilizamos uma stack fixa por padrão. Selecionamos as tecnologias com base em: 1-Volume de usuários, 2-Exigências regulatórias, 3-Necessidade de escalabilidade, 4-Orçamento do cliente, O foco não é a ferramenta — é o desempenho, segurança e sustentabilidade da solução.",
-        "Que tipos de empresas podem contratar a evva.all?":"Trabalhamos com restaurantes, empresas do setor bancário, comércio, prestadores de serviços e qualquer negócio que queira automatizar processos ou usar dados de forma estratégica ou criar chatboot para atendimnto automático.",
+        "Que tipos de empresas podem contratar a evva.all?":"Trabalhamos com restaurantes, empresas do setor bancário, comércio, prestadores de serviços, Clínicas de Saúde, Imobliliárias e scritórios de Advogado/consultoria.",
         "O chatbot funciona 24 horas por dia?":"Sim. O sistema funciona 24/7, respondendo clientes automaticamente.",
         "O chatbot pode integrar com WhatsApp Business?":"Sim, utilizamos a API oficial do WhatsApp Business para integração segura e profissional.",
         "O chatbot substitui funcionários?":"Não. Ele automatiza tarefas repetitivas, permitindo que a equipa foque em atividades estratégicas trazendo mais resultados com os mesmos recursos.",
@@ -41,8 +41,7 @@ Dados = {
         "Como funciona o processo de contratação?":"Diagnóstico do problema, Proposta técnica, Desenvolvimento, Implementação, Suporte.",
         "O pagamento é mensal ou único?":"Depende do serviço, projetos personalizados e únicos podem ser pagos por  projetos desenvolvidos, sistemas com manutenção podem ter pagamento mensal.",
         "Por que escolher a evvaall?":"Porque combinamos tecnologia, estratégia e personalização. Não vendemos soluções genéricas — desenvolvemos sistemas adaptados ao seu negócio.",
-        "Quanto custa um serviço de análise de dados?":"O valor depende do nível de complexidade e integrações necessárias.",
-        "Quanto custa um ....?":"O valor depende do nível de complexidade e integrações necessárias.",
+        "Quanto custam os vossos serviços?":"O valor depende do nível de complexidade e integrações necessárias.Preciso de entender o seu desafio. Pode deixar o seu WhatsApp ou e-mail aqui?.",
         "Quanto custa um chatbot?":"O valor depende do nível de complexidade e integrações necessárias.",
         "Como funcionam os chatbots com IA desenvolvidos pela evvaall?":"Nossos sistemas utilizam modelos de linguagem integrados a regras de negócio específicas do cliente. A arquitetura geralmente envolve: 1-Interface (Site ou WhatsApp Business API), 2-Backend seguro (API própria), 3-Motor de IA, 4-Base de conhecimento personalizada, 5-Logs e monitoramento de desempenho, Isso permite respostas contextuais, automação de processos e coleta estruturada de dados.",
         "A IA toma decisões automáticas?":"A IA executa ações dentro de limites definidos. Sempre existe configuração de regras e possibilidade de supervisão humana para processos críticos. Não implementamos sistemas que atuem sem governança.",
@@ -51,20 +50,27 @@ Dados = {
         "Como funciona o ciclo de implementação?":"1-Diagnóstico técnico e operacional, 2-Mapeamento de processos, 3-Definição da arquitetura, 4-Desenvolvimento e testes, 5-Implantação controlada, 6-Monitoramento e otimização contínua",
     },
     "respostas_automaticas":{
-        "Oi":"Oi, Como posso ajudar?",
-        "Olá":"Olá, Como posso ajudar?",
-        ".":"Este é um agente de atendimento que responde apénas perguntas sobre a Evvall.",
+        ".":"Este é um agente de atendimento que responde a perguntas sobre a evvall. Existem perguntas que não estou autorizado a processar",
         "..":"Muito Obrigado!",
         "Muito Obrigado":"Nada por isso. Até à próxima!",
         "*":"Deixe o seu recado. depois entraremos em contacto.",
         "**":"Deixe sua mensagem entre ' ' que nós entraremos em contacto.",
-        "***":"Deixe uma pergunta entre ' ' que nós entraremos em contacto.",
-        "...":"Nada por isso. Oque mais gostou?",
         "....":"Acesse o nosso site para mais informação.",
         ".....":"fui útil?",
     }
 }
-
+Dados["Roteiro_vendas"] = {
+    "passo_1": "Olá! Bem-vindo à evvaall. Eu sou o assistente virtual inteligente. Com quem tenho o prazer de falar?",
+    "passo_2": "Prazer, {nome}! Para te ajudar da melhor forma, o que procura hoje?\n1. Custos dos serviços;\n2. Suporte Técnico\n3. Fazer perguntas\n4. Falar com um Consultor Humano",
+    "passo_3_orcamento": "Entendido. Para que eu possa preparar um valor aproximado, como descreveria o seu projeto atual? (Ex: Pequena automação, Sistema completo de dados ou Chatbot para empresa)",
+    "passo_3_suporte":"Entendido! A nossa equipa técnica está pronta para ajudar. Para agilizarmos, pode descrever brevemente o que está a acontecer ou indicar o número do seu contrato/projeto?",    
+    "passo_3_falar_com_humano":"Com certeza! Nada substitui uma boa conversa estratégica. O nosso consultor especialista terá todo o prazer em falar consigo. Para agendarmos uma chamada breve de 5 a 10 minutos ou para ele lhe enviar um convite de reunião, qual é o seu contacto?",
+    "passo_3_tirar_duvida":"Excelente! Sobre o que você gostaria de saber mais agora?\n>•Quais são os nossos Serviços;\n•Qual é o Nosso objectivo?\n•Em que árias nós atuamos?\n•Faça uma outra pergunta.",
+    "passo_4_orçamento":"Excelente. Para que o nosso especialista envie a proposta detalhada e o cronograma, por favor, deixe o seu WhatsApp ou E-mail.",
+    "passo_4_suporte":"Obrigado pelo detalhe. Vou abrir um ticket prioritário agora. Qual o melhor número de WhatsApp para o técnico lhe contactar caso precisemos de acesso remoto ou mais detalhes?",
+    "passo_4_falar_com_humano":"Excelente, vou passar agora mesmo para o nosso consultor no WhatsApp, é mais rápido!.Posso ajudar em algo mais?",
+    "passo_5_final":"Muito obrigado! Recebi os seus dados. Em menos de 2 horas um consultor entrará em contacto consigo. Posso ajudar em algo mais?"
+}
 client = Groq(
     api_key=os.getenv("GROQ_API_KEY")
 )
@@ -83,16 +89,35 @@ def orientacao(diconario:dict) -> str:
         contexto +=f"\n- {pergunta}:{resposta}"
 
     prompt =f"""
-    Você é um agente oficial da empresa Evaall.
+    Você é o Assistente de Vendas da EVVAALL. Sua missão é conduzir o cliente pelo FUNIL DE VENDAS:
+    
+    ORDEM DE CONVERSA:
+    1. Se o cliente disser 'Oi' ou 'Olá', execute o PASSO 1: Pergunte o nome dele.
+    2. Assim que ele disser o nome, execute o PASSO 2: Pergunte o que ele procura (Custo dos seviços, Suporte técnico, Fazer perguntas ou Falar com consultor).
+    3. Se ele escolher 'Custo dos serviços', execute o PASSO 3(orçamento): Pergunte o tamanho/tipo do projeto.
+    3.1 Após a resposta dele, execute o PASSO 4(orçamento): Peça o contacto (WhatsApp ou E-mail).
+    4. Se ele escolher 'Suporte técnico', execute  o PASSO 3(suporte).
+    4.1 Após a resposta dele, execute o PASSO 4(suporte): Peça o contacto (WhatsApp ou E-mail).
+    5. Se ele escolher 'Fazer perguntas', execute  o PASSO 3(tirar_duvida).
+    5.1 Após a resposta dele, podes procurar uma resposta em BASE DE CONEHECIMNTO.
+    6. Se ele escolher 'Falar com consultor', execute  o PASSO 3(falar_com_humano).
+    6.1 Após a resposta dele, execute o PASSO 4(falar_com_humano).
+    5. No final, execute o PASSO 5: Agradeça e informe que entraremos em contacto em breve.
 
+    REGRAS DE OURO:
+    - Não pule etapas.
+    - Seja educado e use termos como 'Excelente' e 'Com certeza'.
+    - Se ele fizer uma pergunta técnica no meio do processo, responda brevemente usando a BASE DE CONHECIMENTO e volte para o passo onde parou.
+    - Se o cliente se recusar a dar o contacto, responda: 'Compreendo perfeitamente a sua privacidade. No entanto, como as nossas soluções são personalizadas para cada negócio, o nosso especialista precisa de fazer 2 ou 3 perguntas técnicas que eu, como assistente virtual, ainda não estou autorizado a processar. Podemos avançar?
+    
     REGRAS IMPORTANTES:
-        1. Responda exclusivamente usando as respostas fornecidas abaixo.
-        2. Se a pergunta não existir na base, responda exatamente com:
-        "{diconario["respostas_automaticas"]["."]}"
-        3. Quando não souberes deves responder educadamente com {diconario["respostas_automaticas"]["."]}.
-        4. Se a mensagem do cliente for 'muito obrigado', podes escolher responder com {diconario["respostas_automaticas"]["Muito Obrigado"]} ou com {diconario["respostas_automaticas"]["..."]} ou com {diconario["respostas_automaticas"]["....."]}.
-        5. Se a pessoa fizer duas perguntas que você desconhece, podes escolher responder com {diconario["respostas_automaticas"]["**"]} ou com {diconario["respostas_automaticas"]["***"]} ou com {diconario["respostas_automaticas"]["...."]}.
-    BASE DE CONHCIMNTO:
+        1. Ao responder perguntas técnicas, responda exclusivamente usando as respostas fornecidas abaixo. Mas, podes corrigir erros ortográficos.
+        2. Quando uma responder pergunta, não acabe por aí, tente fazer uma pergunta que leve o cliente de volta ao funil de  vendas.
+        3. Se a pergunta não existir na base, responda exatamente com: "{diconario["respostas_automaticas"]["."]}"
+        4. Quando não souberes deves responder educadamente com {diconario["respostas_automaticas"]["."]}.
+        5. Se a mensagem do cliente for 'muito obrigado', podes escolher responder com {diconario["respostas_automaticas"]["Muito Obrigado"]} ou com {diconario["respostas_automaticas"]["..."]} ou com {diconario["respostas_automaticas"]["....."]}.
+        
+    BASE DE CONHECIMENTO:
     {contexto}
     """
     return prompt

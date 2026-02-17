@@ -128,16 +128,19 @@ def home():
             }, 400
         )
     mensagem = data["mensagem"].strip()
-    historico = [
-        {"role": "system", "content": f"Você é um assistente útil. {orientacao(Dados)}"}
-    ]
-    resposta = enviar_mensagem(mensagem, historico)
+    
     if mensagem in Dados["faq"]:
         return jsonify({"resposta": Dados["faq"][mensagem]})
 
     if mensagem in Dados["respostas_automaticas"]:
         return jsonify({"resposta": Dados["respostas_automaticas"][mensagem]})
-    
+    historico = [
+        {"role": "system", "content": f"Você é um assistente útil. {orientacao(Dados)}"}
+    ]
+    try:
+        resposta = enviar_mensagem(mensagem, historico)
+    except Exception as e:
+        resposta = "Desculpa, Estamos com uma instabilidade técnica. podes ligar para 957 847 477."
     return jsonify({"resposta":resposta})
 
 if __name__ == "__main__":

@@ -115,7 +115,7 @@ def orientacao(diconario:dict) -> str:
         2. Quando uma responder pergunta, não acabe por aí, tente fazer uma pergunta que leve o cliente de volta ao funil de  vendas.
         3. Se a pergunta não existir na base, responda exatamente com: "{diconario["respostas_automaticas"]["."]}"
         4. Quando não souberes deves responder educadamente com {diconario["respostas_automaticas"]["."]}.
-        5. Se a mensagem do cliente for 'muito obrigado', podes escolher responder com {diconario["respostas_automaticas"]["Muito Obrigado"]} ou com {diconario["respostas_automaticas"]["..."]} ou com {diconario["respostas_automaticas"]["....."]}.
+        5. Se a mensagem do cliente for 'muito obrigado', podes escolher responder com {diconario["respostas_automaticas"]["Muito Obrigado"]} ou com {diconario["respostas_automaticas"]["....."]}.
         
     BASE DE CONHECIMENTO:
     {contexto}

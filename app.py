@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import os
 from flask_cors import CORS
 import smtplib
+
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import re
@@ -117,9 +118,9 @@ def conected(mensagem:str):
     else:
         return msn
 
-def orientacao(diconario:dict) -> str:
+def orientacao(dicionario:dict) -> str:
     contexto =""
-    for pergunta, resposta in list(diconario["faq"].items()) + list(diconario["respostas_automaticas"].items()):
+    for pergunta, resposta in list(dicionario["faq"].items()) + dicionario["Roteiro_vendas"].items() + list(dicionario["respostas_automaticas"].items()):
         contexto +=f"\n- {pergunta}:{resposta}"
 
     prompt =f"""
@@ -140,16 +141,15 @@ def orientacao(diconario:dict) -> str:
 
     REGRAS DE OURO:
     - Não pule etapas.
-    - Seja educado e use termos como 'Excelente' e 'Com certeza'.
     - Se ele fizer uma pergunta técnica no meio do processo, responda brevemente usando a BASE DE CONHECIMENTO e volte para o passo onde parou.
     - Se o cliente se recusar a dar o contacto, responda: 'Compreendo perfeitamente a sua privacidade. No entanto, como as nossas soluções são personalizadas para cada negócio, o nosso especialista precisa de fazer 2 ou 3 perguntas técnicas que eu, como assistente virtual, ainda não estou autorizado a processar. Podemos avançar?
     
     REGRAS IMPORTANTES:
-        1. Ao responder perguntas técnicas, responda exclusivamente usando as respostas fornecidas abaixo. Mas, podes corrigir erros ortográficos.
+        1. Ao responder, responda exclusivamente usando as respostas fornecidas abaixo. Mas, podes corrigir erros ortográficos.
         2. Quando uma responder pergunta, não acabe por aí, tente fazer uma pergunta que leve o cliente de volta ao funil de  vendas.
-        3. Se a pergunta não existir na base, responda exatamente com: "{diconario["respostas_automaticas"]["."]}"
-        4. Quando não souberes deves responder educadamente com {diconario["respostas_automaticas"]["."]}.
-        5. Se a mensagem do cliente for 'muito obrigado', podes escolher responder com {diconario["respostas_automaticas"]["Muito Obrigado"]} ou com {diconario["respostas_automaticas"]["....."]}.
+        3. Se a pergunta não existir na base, responda exatamente com: "{dicionario["respostas_automaticas"]["."]}"
+        4. Quando não souberes deves responder educadamente com {dicionario["respostas_automaticas"]["."]}.
+        5. Se a mensagem do cliente for 'muito obrigado', podes escolher responder com {dicionario["respostas_automaticas"]["Muito Obrigado"]} ou com {dicionario["respostas_automaticas"]["....."]}.
         
     BASE DE CONHECIMENTO:
     {contexto}
@@ -162,9 +162,9 @@ def enviar_mensagem(mensagem, historico):
         "content": mensagem
     })
     completion = client.chat.completions.create(
-        model="openai/gpt-oss-120b",
+        model="llama-3.3-70b-versatile",
         messages=historico,
-        temperature=0.7
+        temperature=0.6
     )
     resposta = completion.choices[0].message.content
     historico.append({
@@ -190,28 +190,27 @@ def home():
     # detetar número de telefone (Angola)
     padrao_tel = r"9\d{8}"
     tell = re.search(padrao_tel, mensagem)
-    padrao_email = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+    padrao_email = r"[\w\.-]+@[\w\.-]+\.\w+"
     email = re.search(padrao_email, mensagem)
+
     
-    if tell:
-        contacto = resultado.group()
-        # Aqui chamas a função de e-mail
+    if tell or email:
+        contacto = tell.group(0) if tell else email.group(0)
         enviar_notificacao_lead("Cliente do Site evvaall", contacto, "Interesse detetado via Chat")
-    if email:
-        contacto = email.group()
-        enviar_notificacao_lead("Cliente do Site evvaall", contacto, "Interesse detetado via Chat")
+    
     if mensagem in Dados["faq"]:
         return jsonify({"resposta": Dados["faq"][mensagem]})
-
-    if mensagem in Dados["respostas_automaticas"]:
-        return jsonify({"resposta": Dados["respostas_automaticas"][mensagem]})
+        
     historico = [
         {"role": "system", "content": f"Você é um assistente útil. {orientacao(Dados)}"}
     ]
+    historico_usuario = data.get("historico", [])
+    historico.extend(historico_usuario())
+    historico.append({"role": "user", "content": mensagem})
     try:
         resposta = enviar_mensagem(mensagem, historico)
     except Exception as e:
-        resposta = "Desculpa, Estamos com uma instabilidade técnica. podes ligar para 957 847 477."
+        resposta = "Desculpa, teve um pequeno problema técnico. podes ligar para 957 847 477."
     return jsonify({"resposta":resposta})
 
 if __name__ == "__main__":

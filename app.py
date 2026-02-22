@@ -205,7 +205,7 @@ def home():
         {"role": "system", "content": f"Você é um assistente útil. {orientacao(Dados)}"}
     ]
     historico_usuario = data.get("historico", [])
-    historico.extend(historico_usuario())
+    historico.extend(historico_usuario)
     historico.append({"role": "user", "content": mensagem})
     try:
         resposta = enviar_mensagem(mensagem, historico)

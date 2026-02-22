@@ -164,7 +164,7 @@ def enviar_mensagem(mensagem, historico):
     completion = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
         messages=historico,
-        temperature=0.6
+        temperature=0.4
     )
     resposta = completion.choices[0].message.content
     historico.append({

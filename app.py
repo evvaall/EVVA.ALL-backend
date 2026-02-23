@@ -32,12 +32,11 @@ def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
     msg.attach(MIMEText(corpo, 'plain'))
 
     try:
-        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server = smtplib.SMTP('smtp.gmail.com', 587, timeout=10)
         server.starttls()
         server.login(meu_email, minha_senha)
         server.send_message(msg)
         server.quit()
-        print("Notificação enviada com sucesso!")
     except Exception as e:
         print(f"Erro ao enviar e-mail: {e}")
 
@@ -181,8 +180,7 @@ CORS(app)
 def home():
     data = request.get_json()
     if not data or "mensagem" not in data:
-    return jsonify(
-        {
+        return jsonify({
             "erro":"envie {'mensagem':'texto aqui'}"
             }), 400
     
@@ -193,7 +191,7 @@ def home():
     email = re.search(padrao_email, mensagem)    
     if tell or email:
         contacto = tell.group(0) if tell else email.group(0)
-        return enviar_notificacao_lead("Cliente do Site evvaall", contacto, "Interesse detetado via Chat")
+        enviar_notificacao_lead("Cliente do Site evvaall", contacto, "Interesse detetado via Chat")
     if mensagem in Dados["faq"]:
         return jsonify({"resposta": Dados["faq"][mensagem]})
         

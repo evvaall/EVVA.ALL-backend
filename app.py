@@ -193,7 +193,7 @@ def home():
     email = re.search(padrao_email, mensagem)    
     if tell or email:
         contacto = tell.group(0) if tell else email.group(0)
-        enviar_notificacao_lead("Cliente do Site evvaall", contacto, "Interesse detetado via Chat")
+        return enviar_notificacao_lead("Cliente do Site evvaall", contacto, "Interesse detetado via Chat")
     if mensagem in Dados["faq"]:
         return jsonify({"resposta": Dados["faq"][mensagem]})
         

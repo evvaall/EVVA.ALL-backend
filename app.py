@@ -37,10 +37,11 @@ def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
                 server.starttls()
                 server.login(meu_email, minha_senha)
                 server.send_message(msg)
-                server.quit()
         except Exception as e:
             print(f"Erro ao enviar e-mail: {e}")
-    threading.Thread(target=disparar_email).start()
+    Thread = threading.Thread(target=disparar_email)
+    Thread.daemon = True
+    Thread.start()
 
 load_dotenv()
 Dados = {

@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import os
 from flask_cors import CORS
 import smtplib
+import threading
 
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -30,15 +31,16 @@ def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
     Responde rápido para não perderes a venda!
     """
     msg.attach(MIMEText(corpo, 'plain'))
-
-    try:
-        server = smtplib.SMTP('smtp.gmail.com', 587, timeout=10)
-        server.starttls()
-        server.login(meu_email, minha_senha)
-        server.send_message(msg)
-        server.quit()
-    except Exception as e:
-        print(f"Erro ao enviar e-mail: {e}")
+    def disparar_email():
+        try:
+            with smtplib.SMTP('smtp.gmail.com', 587, timeout=10) as server:
+                server.starttls()
+                server.login(meu_email, minha_senha)
+                server.send_message(msg)
+                server.quit()
+        except Exception as e:
+            print(f"Erro ao enviar e-mail: {e}")
+    threading.Thread(target=disparar_email).start()
 
 load_dotenv()
 Dados = {

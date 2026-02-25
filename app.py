@@ -111,18 +111,10 @@ Dados["Roteiro_vendas"] = {
 client = Groq(
     api_key=os.getenv("GROQ_API_KEY")
 )
-def conected(mensagem:str):
-    msn=mensagem.capitalize().strip()
-    if msn in Dados["respostas_automaticas"]:
-        return Dados["respostas_automaticas"][msn]
-    elif msn in Dados["faq"]:
-        return Dados["faq"][msn]
-    else:
-        return msn
 
 def orientacao(dicionario:dict) -> str:
     contexto =""
-    for pergunta, resposta in list(dicionario["faq"].items()) + dicionario["Roteiro_vendas"].items() + list(dicionario["respostas_automaticas"].items()):
+    for pergunta, resposta in list(dicionario["faq"].items()) + list(dicionario["Roteiro_vendas"].items()) + list(dicionario["respostas_automaticas"].items()):
         contexto +=f"\n- {pergunta}:{resposta}"
 
     prompt =f"""
@@ -166,7 +158,8 @@ def enviar_mensagem(mensagem, historico):
     completion = client.chat.completions.create(
         model="openai/gpt-oss-120b",
         messages=historico,
-        temperature=0.4
+        temperature=0.4,
+        timeout = 15
     )
     resposta = completion.choices[0].message.content
     historico.append({
@@ -175,7 +168,7 @@ def enviar_mensagem(mensagem, historico):
     })
     return resposta
 
-
+sessoes= {}
 app = Flask(__name__)
 
 CORS(app)
@@ -188,7 +181,7 @@ def home():
             }), 400
     
     mensagem = data["mensagem"].strip()
-    padrao_tel = r"(\+244)?9\d{8}"
+    padrao_tel = r"(\+244\s?)?9\d{2}\s?\d{3}\s?\d{3}"
     tell = re.search(padrao_tel, mensagem)
     padrao_email = r"[\w\.-]+@[\w\.-]+\.\w+"
     email = re.search(padrao_email, mensagem)    
@@ -197,11 +190,12 @@ def home():
         enviar_notificacao_lead("Cliente do Site evvaall", contacto, "Interesse detetado via Chat")
     if mensagem in Dados["faq"]:
         return jsonify({"resposta": Dados["faq"][mensagem]})
-        
-    historico = [
-    {"role": "system", "content": f"Você é um assistente útil. {orientacao(Dados)}"}
-    ]
-    
+    session_id = data.get("session_id")
+    if session_id not in sessoes:
+        sessoes[session_id] = [
+            {"role": "system", "content": f"Você é um assistente útil. {orientacao(Dados)}"}
+        ]
+    historico = sessoes[session_id]
     historico_usuario = data.get("historico", [])[-10:]
     historico.extend(historico_usuario)
     try:

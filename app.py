@@ -161,7 +161,7 @@ def enviar_mensagem(mensagem, historico):
         "content": mensagem
     })
     completion = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
         messages=historico,
         temperature=0.4
     )
@@ -199,7 +199,7 @@ def home():
     {"role": "system", "content": f"Você é um assistente útil. {orientacao(Dados)}"}
     ]
     
-    historico_usuario = data.get("historico", [])
+    historico_usuario = data.get("historico", [])[-10:]
     historico.extend(historico_usuario)
     try:
         resposta = enviar_mensagem(mensagem, historico)

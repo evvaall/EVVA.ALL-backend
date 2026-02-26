@@ -33,7 +33,7 @@ def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
     msg.attach(MIMEText(corpo, 'plain'))
     def disparar_email():
         try:
-            with smtplib.SMTP('smtp.gmail.com', 465, timeout=10) as server:
+            with smtplib.SMTP('smtp.gmail.com', 587, timeout=10) as server:
                 server.starttls()
                 server.login(meu_email, minha_senha)
                 server.send_message(msg)

@@ -14,7 +14,7 @@ def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
     meu_email = os.getenv("EMAIL")
     minha_senha =os.getenv("SENHA_APP")
     email_destino =os.getenv("EMAIL") # Onde queres receber o aviso
-
+    print(mmeu_email + minha_senha)
     # Criar a estrutura do e-mail
     msg = MIMEMultipart()
     msg['From'] = meu_email
@@ -33,7 +33,7 @@ def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
     msg.attach(MIMEText(corpo, 'plain'))
     def disparar_email():
         try:
-            with smtplib.SMTP('smtp.gmail.com', 587, timeout=10) as server:
+            with smtplib.SMTP('smtp.gmail.com', 465, timeout=10) as server:
                 server.starttls()
                 server.login(meu_email, minha_senha)
                 server.send_message(msg)
@@ -202,11 +202,7 @@ def home():
     historico.extend(historico_usuario)
     try:
         resposta = enviar_mensagem(mensagem, historico)
-        enviar_notificacao_lead("Cliente do Site evvaall", "23456777777654", "Interesse detetado via Chat")
     except Exception as e:
-        import traceback
-        print("--- ERRO NO SERVIDOR ---")
-        print(traceback.format_exc()) 
         resposta = "Desculpa, teve um pequeno problema técnico. podes ligar para 957 847 477."
     return jsonify({"resposta":resposta})
     

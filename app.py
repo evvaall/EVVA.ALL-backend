@@ -13,7 +13,7 @@ import re
 def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
     meu_email = os.getenv("EMAIL")
     minha_senha =os.getenv("SENHA_APP")
-    email_destino =os.getenv("EMAIL") # Onde queres receber o aviso
+    email_destino ="evandr283@gmail.com"
     print(meu_email + minha_senha)
     # Criar a estrutura do e-mail
     msg = MIMEMultipart()

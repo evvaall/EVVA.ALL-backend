@@ -37,6 +37,7 @@ def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
                 server.starttls()
                 server.login(meu_email, minha_senha)
                 server.send_message(msg)
+                print("email enviado")
         except Exception as e:
             print(f"Erro ao enviar e-mail: {e}")
     Thread = threading.Thread(target=disparar_email)
@@ -48,7 +49,7 @@ Dados = {
     "Empresa":"evvaall",
     "Contacto":[
         "+244957847477",
-        "ev283@gmail.com"
+        "evaall283@gmail.com"
     ],
     "faq":{
         "O Que é a evvaall?": "A evvaall é uma empresa especializada em automação de processos, análise de dados e desenvolvimento de soluções com inteligência artificial para empresas e profissionais.",
@@ -135,6 +136,7 @@ def orientacao(dicionario:dict) -> str:
 
     REGRAS DE OURO:
     - Não pule etapas.
+    - Não dê respostas mutio grandes.
     - Se ele fizer uma pergunta técnica no meio do processo, responda brevemente usando a BASE DE CONHECIMENTO e volte para o passo onde parou.
     - Se o cliente se recusar a dar o contacto, responda: 'Compreendo perfeitamente a sua privacidade. No entanto, como as nossas soluções são personalizadas para cada negócio, o nosso especialista precisa de fazer 2 ou 3 perguntas técnicas que eu, como assistente virtual, ainda não estou autorizado a processar. Podemos avançar?
     
@@ -201,6 +203,9 @@ def home():
     try:
         resposta = enviar_mensagem(mensagem, historico)
     except Exception as e:
+        import traceback
+        print("--- ERRO NO SERVIDOR ---")
+        print(traceback.format_exc()) 
         resposta = "Desculpa, teve um pequeno problema técnico. podes ligar para 957 847 477."
     return jsonify({"resposta":resposta})
     

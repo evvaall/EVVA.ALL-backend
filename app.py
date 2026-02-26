@@ -181,7 +181,7 @@ def home():
             }), 400
     
     mensagem = data["mensagem"].strip()
-    padrao_tel = r"(\+244\s?)?9\d{2}\s?\d{3}\s?\d{3}"
+    padrao_tel = r"\s?9\d{2}\s?\d{3}\s?\d{3}"
     tell = re.search(padrao_tel, mensagem)
     padrao_email = r"[\w\.-]+@[\w\.-]+\.\w+"
     email = re.search(padrao_email, mensagem)    

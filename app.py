@@ -13,9 +13,8 @@ import re
 def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
     meu_email = os.getenv("EMAIL")
     minha_senha =os.getenv("SENHA_APP")
-    email_destino ="evandr283@gmail.com"
-    print(meu_email + minha_senha)
-    # Criar a estrutura do e-mail
+    email_destino = os.getenv("EMAIL")
+    
     msg = MIMEMultipart()
     msg['From'] = meu_email
     msg['To'] = email_destino
@@ -161,7 +160,6 @@ def enviar_mensagem(mensagem, historico):
         model="openai/gpt-oss-120b",
         messages=historico,
         temperature=0.4,
-        timeout = 15
     )
     resposta = completion.choices[0].message.content
     historico.append({

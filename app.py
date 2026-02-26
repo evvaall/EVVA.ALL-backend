@@ -202,6 +202,7 @@ def home():
     historico.extend(historico_usuario)
     try:
         resposta = enviar_mensagem(mensagem, historico)
+        enviar_notificacao_lead("Cliente do Site evvaall", "23456777777654", "Interesse detetado via Chat")
     except Exception as e:
         import traceback
         print("--- ERRO NO SERVIDOR ---")

@@ -12,8 +12,8 @@ meu_email = os.getenv("EMAIL")
 minha_senha = os.getenv("SENHA_APP")
 email_destino = os.getenv("EMAIL")
 
-print(meu_email)
-print(minha_senha)
+print(meu_email if meu_email else "não consigo me conectar ao email")
+print(minha_senha if minha_senha else "senha  inexistente")
 def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
     msg = EmailMessage()
     msg['From'] = meu_email

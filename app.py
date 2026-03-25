@@ -5,9 +5,11 @@ import os
 from flask_cors import CORS
 import smtplib
 from email.message import EmailMessage
-
-
 import re
+
+
+
+load_dotenv()
 meu_email = os.getenv("EMAIL")
 minha_senha = os.getenv("SENHA_APP")
 email_destino = os.getenv("EMAIL")
@@ -41,7 +43,6 @@ def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
         print(f"Erro ao enviar e-mail: {e}")
 
 
-load_dotenv()
 Dados = {
     "Empresa":"evvaall",
     "Contacto":[
@@ -194,7 +195,7 @@ def home():
 
     if contacto_encontrado:
         enviar_notificacao_lead("Utilizador do Chat", contacto_encontrado, "Interesse em Serviços EVVAALL")
-        mensagem = f"[SISTEMA: O utilizador forneceu o contacto {contacto_valor}. Prossiga para o PASSO 5 de agradecimento final]. {mensagem}"
+        mensagem = f"[SISTEMA: O utilizador forneceu o contacto {contacto_encontrado}. Prossiga para o PASSO 5 de agradecimento final]. {mensagem}"
 
     
     

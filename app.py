@@ -5,7 +5,6 @@ import os
 from flask_cors import CORS
 import smtplib
 from email.message import EmailMessage
-import threading
 
 
 import re
@@ -179,26 +178,29 @@ def home():
             }), 400
     
     mensagem = data["mensagem"].strip()
+    session_id = data.get("session_id", "default")
+    
+    print(mensagem)
     padrao_tel = r"\s?9\d{2}\s?\d{3}\s?\d{3}"
     tell = re.search(padrao_tel, mensagem)
     padrao_email = r"[\w\.-]+@[\w\.-]+\.\w+"
     email = re.search(padrao_email, mensagem)    
     if tell or email:
-        contacto = tell.group(0) if tell else email.group(0)
+        contacto = tell if tell else email
         enviar_notificacao_lead("Cliente do Site evvaall", contacto, "Interesse detetado via Chat")
 
     
-    session_id = data.get("session_id", "default")
+    
     if session_id not in sessoes:
         sessoes[session_id] = [
             {"role": "system", "content": f"Você é um assistente útil. {orientacao(Dados)}"}
         ]
     
     historico = sessoes[session_id]
-    historico_usuario = data.get("historico", [])[-10:]
-    historico.extend(historico_usuario)
+    if len(historico) > 10:
+        sessoes[session_id] = [historico[0]] + historico[-6:]
     try:
-        resposta = enviar_mensagem(mensagem, historico)
+        resposta = enviar_mensagem(mensagem, sessoes[session_id])
     except Exception as e:
         resposta = "Desculpa, teve um pequeno problema técnico. podes ligar para 957 847 477."
     return jsonify({"resposta":resposta})

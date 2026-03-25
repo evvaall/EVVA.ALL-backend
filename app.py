@@ -188,13 +188,14 @@ def home():
     if tell or email:
         contacto = tell.group(0) if tell else email.group(0)
         enviar_notificacao_lead("Cliente do Site evvaall", contacto, "Interesse detetado via Chat")
-    if mensagem in Dados["faq"]:
-        return jsonify({"resposta": Dados["faq"][mensagem]})
-    session_id = data.get("session_id")
+
+    
+    session_id = data.get("session_id", "default")
     if session_id not in sessoes:
         sessoes[session_id] = [
             {"role": "system", "content": f"Você é um assistente útil. {orientacao(Dados)}"}
         ]
+    
     historico = sessoes[session_id]
     historico_usuario = data.get("historico", [])[-10:]
     historico.extend(historico_usuario)

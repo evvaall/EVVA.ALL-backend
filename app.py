@@ -8,12 +8,13 @@ from email.message import EmailMessage
 
 
 import re
+meu_email = os.getenv("EMAIL")
+minha_senha = os.getenv("SENHA_APP")
+email_destino = os.getenv("EMAIL")
 
+print(meu_email)
+print(minha_senha)
 def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
-    meu_email = os.getenv("EMAIL")
-    minha_senha =os.getenv("SENHA_APP")
-    email_destino = os.getenv("EMAIL")
-    
     msg = EmailMessage()
     msg['From'] = meu_email
     msg['To'] = email_destino

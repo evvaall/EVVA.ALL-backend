@@ -186,9 +186,15 @@ def home():
     tell = re.search(padrao_tel, mensagem)
     padrao_email = r"[\w\.-]+@[\w\.-]+\.\w+"
     email = re.search(padrao_email, mensagem)    
-    if tell or email:
-        contacto = tell if tell else email
-        enviar_notificacao_lead("Cliente do Site evvaall", contacto, "Interesse detetado via Chat")
+
+    if tell:
+        contacto_encontrado = tell.group()
+    elif email:
+        contacto_encontrado = email.group()
+
+    if contacto_encontrado:
+        enviar_notificacao_lead("Utilizador do Chat", contacto_encontrado, "Interesse em Serviços EVVAALL")
+        mensagem = f"[SISTEMA: O utilizador forneceu o contacto {contacto_valor}. Prossiga para o PASSO 5 de agradecimento final]. {mensagem}"
 
     
     
@@ -196,6 +202,7 @@ def home():
         sessoes[session_id] = [
             {"role": "system", "content": f"Você é um assistente útil. {orientacao(Dados)}"}
         ]
+
     
     historico = sessoes[session_id]
     if len(historico) > 10:

@@ -4,10 +4,10 @@ from dotenv import load_dotenv
 import os
 from flask_cors import CORS
 import smtplib
+from email.message import EmailMessage
 import threading
 
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+
 import re
 
 def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
@@ -15,7 +15,7 @@ def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
     minha_senha =os.getenv("SENHA_APP")
     email_destino = os.getenv("EMAIL")
     
-    msg = MIMEMultipart()
+    msg = EmailMessage()
     msg['From'] = meu_email
     msg['To'] = email_destino
     msg['Subject'] = f"🔥 NOVO LEAD: {nome_cliente} está interessado!"
@@ -29,7 +29,7 @@ def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
     
     Responde rápido para não perderes a venda!
     """
-    msg.attach(MIMEText(corpo, 'plain'))
+    msg.set_content(corpo)
     def disparar_email():
         try:
             with smtplib.SMTP('smtp.gmail.com', 587, timeout=10) as server:

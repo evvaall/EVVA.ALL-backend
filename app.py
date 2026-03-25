@@ -30,18 +30,16 @@ def enviar_notificacao_lead(nome_cliente, contacto_cliente, interesse_cliente):
     Responde rápido para não perderes a venda!
     """
     msg.set_content(corpo)
-    def disparar_email():
-        try:
-            with smtplib.SMTP('smtp.gmail.com', 587, timeout=10) as server:
-                server.starttls()
-                server.login(meu_email, minha_senha)
-                server.send_message(msg)
-                print("email enviado")
-        except Exception as e:
-            print(f"Erro ao enviar e-mail: {e}")
-    Thread = threading.Thread(target=disparar_email)
-    Thread.daemon = True
-    Thread.start()
+
+    try:
+        with smtplib.SMTP('smtp.gmail.com', 587, timeout=10) as server:
+            server.starttls()
+            server.login(meu_email, minha_senha)
+            server.send_message(msg)
+            print("email enviado")
+    except Exception as e:
+        print(f"Erro ao enviar e-mail: {e}")
+
 
 load_dotenv()
 Dados = {
